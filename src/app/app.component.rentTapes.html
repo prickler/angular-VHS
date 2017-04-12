@@ -1,0 +1,71 @@
+<button (click)="sortBy('name')">Sort By Title</button>
+<button (click)="sortBy('id')">Sort By ID</button>
+
+<div>
+  <div>Filter by:</div>
+  <div>
+    <input type='text' [(ngModel)]='term' />
+  </div>
+</div>
+
+<h1>VHS List:</h1>
+<div class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Director</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of (movies | rented | sort: sortType | filter: term)">
+        <td id="">{{ movie.name }}</td>
+        <td id="about">{{ movie.director }}</td>
+        <td id="date">{{ movie.date }}</td>
+        <td id="options">
+          <button type="button" class="buttonModal" (click)="onSelect(movie)" data-toggle="modal" data-target="#detailsModal">Details</button>
+          <button type="button" class="buttonModal" (click)="return(movie)" data-toggle="modal" data-target="#returnModal">Return</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- rentModal -->
+<div id="returnModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{ name }}</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- detailsModal -->
+<div id="detailsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{ name }}</h4>
+      </div>
+      <div class="modal-body">
+        <!--<p>Id: {{movie.id}}</p>
+        <p>Director: {{movie.director}}</p>
+        <p>Date: {{movie.date}}</p>
+        <p><img src={{movie.cover}} style="width:300px;height:400px;"></p>-->
+      </div>
+    </div>
+  </div>
+</div>
+
